@@ -33,9 +33,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 15
+          always-auth: true
       - name: Publish
         run: |
           yarn config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_AUTH_TOKEN }}
           yarn publish --ignore-scripts
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        # env:
+        #   NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
