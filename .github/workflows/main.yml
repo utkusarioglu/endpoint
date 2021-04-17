@@ -8,15 +8,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [15.x]
+    container:
+      image: docker://node:alpine
+      volumes:
+        - /workspace:/github/workspace
     steps:
       - uses: actions/checkout@v2
-      - name: Build on Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
       - run: yarn install --frozen-lockfile --ignore-scripts
       - run: yarn build
         name: Build
@@ -28,13 +25,15 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
+    container:
+      image: docker://node:alpine
+      volumes:
+        - /workspace:/github/workspace
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 15
       - name: Publish
         run: |
+          ls
           echo "//registry.yarnpkg.com/:_authToken=$NPM_TOKEN" >>~/.npmrc
           yarn publish --ignore-scripts
         env:
