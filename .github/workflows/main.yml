@@ -1,0 +1,41 @@
+name: main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [15.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build on Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install --frozen-lockfile --ignore-scripts
+      - run: build build --if-present
+        name: Build
+      - run: yarn test
+        env:
+          CI: true
+
+  publish:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 15
+      - name: Publish
+        run: |
+          yarn config set //registry.npmjs.org/:_authToken ${NPM_AUTH_TOKEN}
+          yarn publish --ignore-scripts
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
