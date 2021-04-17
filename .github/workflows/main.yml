@@ -33,7 +33,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 15
-          # always-auth: true
       - name: Publish
         run: |
           echo "//registry.yarnpkg.com/:_authToken=$NPM_TOKEN" >>~/.npmrc
