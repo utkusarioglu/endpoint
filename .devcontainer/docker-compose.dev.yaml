@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  node:
+    image: node:alpine
+    working_dir: /usr/src/app
+    container_name: endpoint
+    volumes:
+      - ..:/usr/src/app
+      - ..:/workspace:cached
+    command: sh -c "sleep infinity"
