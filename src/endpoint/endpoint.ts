@@ -1,3 +1,5 @@
+import type { ParamAcceptedPrimitives } from './endpoint.types';
+
 /**
  * An identity function that allows the validation of endpoint strings through
  * the defined generic value
@@ -29,7 +31,7 @@ export const validateEndpoint: <Endpoint extends string>(
  */
 export function prepareEndpoint<
   Endpoint extends string,
-  Params extends Record<keyof Params, string | number | boolean>
+  Params extends Record<keyof Params, ParamAcceptedPrimitives>
 >(endpoint: Endpoint, params?: Params): string {
   let preparedEndpoint: string = endpoint;
 
