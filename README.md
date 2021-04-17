@@ -1,6 +1,6 @@
 > :warning: **This project is not ready for consumption**
 
-# Endpoint
+# Endpoint Tools
 
 An opinionated tool for designing and enforcing endpoints.
 
