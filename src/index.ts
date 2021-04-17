@@ -1,4 +1,4 @@
-export { validateEndpoint, prepareEndpoint } from './endpoint.methods';
+export { validateEndpoint, prepareEndpoint } from './endpoint/endpoint';
 
 export type { Post, Get } from './@types/endpoint.types';
 export type { Flavor } from './@types/helper.types';
