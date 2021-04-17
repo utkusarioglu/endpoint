@@ -2,7 +2,8 @@
 
 # Endpoint Tools
 
-An opinionated tool for designing and enforcing endpoints.
+An opinionated but customizable tool for designing, enforcing and communicating
+endpoints.
 
 ## Features
 
