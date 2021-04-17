@@ -29,7 +29,7 @@ export const validateEndpoint: <Endpoint extends string>(
  */
 export function prepareEndpoint<
   Endpoint extends string,
-  Params extends Record<keyof any, string | number | boolean>
+  Params extends Record<keyof Params, string | number | boolean>
 >(endpoint: Endpoint, params?: Params): string {
   let preparedEndpoint: string = endpoint;
 
