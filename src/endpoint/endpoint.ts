@@ -27,19 +27,22 @@ export const validateEndpoint: <Endpoint extends string>(
  * @param endpoint endpoint to format skeleton to which the connection will be made
  * @param params params that shall be placed into the skeleton
  */
-export function prepareEndpoint<Endpoint extends string, Params>(
-  endpoint: Endpoint,
-  params?: Params
-): string {
+export function prepareEndpoint<
+  Endpoint extends string,
+  Params extends Record<keyof any, string | number | boolean>
+>(endpoint: Endpoint, params?: Params): string {
   let preparedEndpoint: string = endpoint;
 
-  if (params) {
-    Object.entries(params).forEach(([strRepresentation, param]) => {
+  // Check of params.constructor === "object" is omitted
+  // as this check is handled by ts
+  if (params && Object.keys(params).length > 0) {
+    Object.entries(params).forEach(([placeholder, param]) => {
       preparedEndpoint = preparedEndpoint.replace(
-        `:${strRepresentation}`,
-        param
+        `:${placeholder}`,
+        '' + param // faster than toString() while using with primitives
       );
     });
   }
+
   return preparedEndpoint;
 }
