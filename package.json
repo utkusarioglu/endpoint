@@ -1,6 +1,6 @@
 {
   "name": "endpoint",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "lib/index.js",
   "repository": "https://github.com/utkusarioglu/endpoint.git",
   "author": "utkusarioglu <utkusarioglu@hotmail.com>",
