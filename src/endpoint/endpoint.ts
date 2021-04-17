@@ -2,11 +2,18 @@
  * An identity function that allows the validation of endpoint strings through
  * the defined generic value
  *
+ * @remarks
+ * Unless you are defining the generic types, there is no reason to use this
+ * method. Its utility comes from comparing the endpoint input with the generic
+ * provided.
+ *
+ * @generic Ep string literal version of the endpoint to be compared against
+ *  the param
  * @param endpoint endpoint string to validate
  */
-export const validateEndpoint: <T extends string>(endpoint: T) => string = (
-  endpoint
-) => endpoint;
+export const validateEndpoint: <Endpoint extends string>(
+  endpoint: Endpoint
+) => string = (endpoint) => endpoint;
 
 /**
  * Prepares an endpoint to which the app will connect. The method also ensures
