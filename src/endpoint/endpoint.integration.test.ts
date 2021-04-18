@@ -1,6 +1,6 @@
 import { validateEndpoint, prepareEndpoint } from './endpoint';
 import { Get, Head, Post, Put, Patch, Delete } from '../index';
-import { uuid, mimetype, isoDate } from '../index';
+import { Uuid, MimeType, IsoDate } from 'brands-and-flavors';
 
 describe('validateEndpoint', () => {
   it('uses GET', () => {
@@ -71,20 +71,20 @@ describe('prepareEndpoint', () => {
     it('with flavors', () => {
       type Feature = Get<
         '/some/:end/:point/:url',
-        { point: uuid; end: mimetype; url: isoDate },
+        { point: Uuid; end: MimeType; url: IsoDate },
         {}
       >;
       const endpoint = '/some/:end/:point/:url';
       const params = {
-        point: 'uuid',
+        point: 'Uuid',
         end: 'mime-type',
-        url: 'isoDate',
+        url: 'IsoDate',
       };
       const prepared = prepareEndpoint<
         Feature['Endpoint'],
         Feature['_get']['_req']['Params']
       >(endpoint, params);
-      const expected = '/some/mime-type/uuid/isoDate';
+      const expected = '/some/mime-type/Uuid/IsoDate';
       expect(expected).toStrictEqual(prepared);
     });
   });
@@ -112,19 +112,19 @@ describe('prepareEndpoint', () => {
     it('with flavors', () => {
       type Feature = Head<
         '/some/:end/:point/:url',
-        { point: uuid; end: mimetype; url: isoDate }
+        { point: Uuid; end: MimeType; url: IsoDate }
       >;
       const endpoint = '/some/:end/:point/:url';
       const params = {
-        point: 'uuid',
+        point: 'Uuid',
         end: 'mime-type',
-        url: 'isoDate',
+        url: 'IsoDate',
       };
       const prepared = prepareEndpoint<
         Feature['Endpoint'],
         Feature['_head']['_req']['Params']
       >(endpoint, params);
-      const expected = '/some/mime-type/uuid/isoDate';
+      const expected = '/some/mime-type/Uuid/IsoDate';
       expect(expected).toStrictEqual(prepared);
     });
   });
@@ -154,21 +154,21 @@ describe('prepareEndpoint', () => {
     it('with flavors', () => {
       type Feature = Post<
         '/some/:end/:point/:url',
-        { point: uuid; end: mimetype; url: isoDate },
+        { point: Uuid; end: MimeType; url: IsoDate },
         {},
         {}
       >;
       const endpoint = '/some/:end/:point/:url';
       const params = {
-        point: 'uuid',
+        point: 'Uuid',
         end: 'mime-type',
-        url: 'isoDate',
+        url: 'IsoDate',
       };
       const prepared = prepareEndpoint<
         Feature['Endpoint'],
         Feature['_post']['_req']['Params']
       >(endpoint, params);
-      const expected = '/some/mime-type/uuid/isoDate';
+      const expected = '/some/mime-type/Uuid/IsoDate';
       expect(expected).toStrictEqual(prepared);
     });
   });
@@ -198,21 +198,21 @@ describe('prepareEndpoint', () => {
     it('with flavors', () => {
       type Feature = Put<
         '/some/:end/:point/:url',
-        { point: uuid; end: mimetype; url: isoDate },
+        { point: Uuid; end: MimeType; url: IsoDate },
         {},
         {}
       >;
       const endpoint = '/some/:end/:point/:url';
       const params = {
-        point: 'uuid',
+        point: 'Uuid',
         end: 'mime-type',
-        url: 'isoDate',
+        url: 'IsoDate',
       };
       const prepared = prepareEndpoint<
         Feature['Endpoint'],
         Feature['_put']['_req']['Params']
       >(endpoint, params);
-      const expected = '/some/mime-type/uuid/isoDate';
+      const expected = '/some/mime-type/Uuid/IsoDate';
       expect(expected).toStrictEqual(prepared);
     });
   });
@@ -242,21 +242,21 @@ describe('prepareEndpoint', () => {
     it('with flavors', () => {
       type Feature = Patch<
         '/some/:end/:point/:url',
-        { point: uuid; end: mimetype; url: isoDate },
+        { point: Uuid; end: MimeType; url: IsoDate },
         {},
         {}
       >;
       const endpoint = '/some/:end/:point/:url';
       const params = {
-        point: 'uuid',
+        point: 'Uuid',
         end: 'mime-type',
-        url: 'isoDate',
+        url: 'IsoDate',
       };
       const prepared = prepareEndpoint<
         Feature['Endpoint'],
         Feature['_patch']['_req']['Params']
       >(endpoint, params);
-      const expected = '/some/mime-type/uuid/isoDate';
+      const expected = '/some/mime-type/Uuid/IsoDate';
       expect(expected).toStrictEqual(prepared);
     });
   });
@@ -285,20 +285,20 @@ describe('prepareEndpoint', () => {
     it('with flavors', () => {
       type Feature = Delete<
         '/some/:end/:point/:url',
-        { point: uuid; end: mimetype; url: isoDate },
+        { point: Uuid; end: MimeType; url: IsoDate },
         {}
       >;
       const endpoint = '/some/:end/:point/:url';
       const params = {
-        point: 'uuid',
+        point: 'Uuid',
         end: 'mime-type',
-        url: 'isoDate',
+        url: 'IsoDate',
       };
       const prepared = prepareEndpoint<
         Feature['Endpoint'],
         Feature['_delete']['_req']['Params']
       >(endpoint, params);
-      const expected = '/some/mime-type/uuid/isoDate';
+      const expected = '/some/mime-type/Uuid/IsoDate';
       expect(expected).toStrictEqual(prepared);
     });
   });

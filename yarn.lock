@@ -857,6 +857,11 @@ braces@^3.0.1:
   dependencies:
     fill-range "^7.0.1"
 
+brands-and-flavors@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/brands-and-flavors/-/brands-and-flavors-1.0.1.tgz#8291a977604c901586d05317042af38b53e7c79e"
+  integrity sha512-vtDeKyxsluHXRPafKI2BBywggzv3xbxnnFpVUJEKZtiZqB32QKZrMKsKqfiGJrai87/NfZ5dTWM6JMNgy4MYjQ==
+
 browser-process-hrtime@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/browser-process-hrtime/-/browser-process-hrtime-1.0.0.tgz#3c9b4b7d782c8121e56f10106d84c0d0ffc94626"
@@ -3497,11 +3502,6 @@ use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
-
-utility-types@^3.10.0:
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.10.0.tgz#ea4148f9a741015f05ed74fd615e1d20e6bed82b"
-  integrity sha512-O11mqxmi7wMKCo6HKFt5AhO4BwY3VV68YU07tgxfz8zJTIxr4BpsezN49Ffwy9j3ZpwwJp4fkRwjRzq3uWE6Rg==
 
 uuid@^3.3.2:
   version "3.4.0"

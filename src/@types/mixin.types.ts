@@ -1,9 +1,9 @@
-import type { uuid } from './flavor.types';
+import type { Uuid } from 'brands-and-flavors';
 
 /**
  * Includes id: uuid in the type
  */
-export type WithId = { id: uuid };
+export type WithId = { id: Uuid };
 
 /**
  * Mixin for response error states involved
@@ -24,4 +24,4 @@ export type WithErrors = {
  * Mixin for request id, useful when the requests and responses carry an
  * id to avoid double sends
  */
-export type WithRequestId = { requestId: uuid };
+export type WithRequestId = { requestId: Uuid };
