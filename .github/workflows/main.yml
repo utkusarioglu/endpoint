@@ -32,9 +32,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Publish
-      - run: yarn install --frozen-lockfile --ignore-scripts
-      - run: yarn build
         run: |
+          yarn install --frozen-lockfile --ignore-scripts
+          yarn build
           ls
           echo "//registry.yarnpkg.com/:_authToken=$NPM_TOKEN" >>~/.npmrc
           yarn publish --ignore-scripts
