@@ -1,5 +1,4 @@
 import {
-  // ResStatesOpinionated,
   ResSuccessExtends,
   ResFailExtends,
   ResSuccessOpinionated,
@@ -25,6 +24,10 @@ import type {
  * server. The GET request should only receive data (the server must
  * not change its state). If you want to change data on the server,
  * use POST, PUT, PATCH or DELETE methods.
+ *
+ * @generic Endpoint
+ * @generic ReqParams: Request params
+ * @generic ResSuccessBody: Body of the success response
  */
 export type Get<
   Endpoint extends string,
@@ -44,6 +47,11 @@ export type Get<
  * server. The GET request should only receive data (the server must
  * not change its state). If you want to change data on the server,
  * use POST, PUT, PATCH or DELETE methods.
+ *
+ * @generic Endpoint
+ * @generic ReqParams: Request params
+ * @generic ResSuccess: Success Response
+ * @generic ResFail: Error Response
  */
 export type GetMeek<
   Endpoint extends string,
@@ -66,6 +74,9 @@ export type GetMeek<
  * using the HTTP HEAD method should only retrieve data (server must not
  * change its state). If you want to change data on the server, use POST,
  * PUT, PATCH or DELETE methods.
+ *
+ * @generic Endpoint
+ * @generic ReqParams: Request params
  */
 export type Head<Endpoint, ReqParams extends ReqParamsExtends> = HeadMeek<
   Endpoint,
@@ -81,6 +92,9 @@ export type Head<Endpoint, ReqParams extends ReqParamsExtends> = HeadMeek<
  * using the HTTP HEAD method should only retrieve data (server must not
  * change its state). If you want to change data on the server, use POST,
  * PUT, PATCH or DELETE methods.
+ *
+ * @generic Endpoint
+ * @generic ReqParams: Request params
  */
 export type HeadMeek<Endpoint, ReqParams extends ReqParamsExtends> = {
   Endpoint: Endpoint;
@@ -98,6 +112,11 @@ export type HeadMeek<Endpoint, ReqParams extends ReqParamsExtends> = {
  * form data to the server or when submitting data using jQuery/AJAX
  * requests. Unlike GET and HEAD requests, the HTTP POST requests may
  * change the server state.
+ *
+ * @generic Endpoint
+ * @generic ReqParams: Request params
+ * @generic ReqBody: Request body
+ * @generic ResSuccessBody: Body of the success response
  */
 export type Post<
   Endpoint extends string,
@@ -122,6 +141,12 @@ export type Post<
  * form data to the server or when submitting data using jQuery/AJAX
  * requests. Unlike GET and HEAD requests, the HTTP POST requests may
  * change the server state.
+ *
+ * @generic Endpoint
+ * @generic ReqParams: Request params
+ * @generic ReqBody: Request body
+ * @generic ResSuccess: Success Response
+ * @generic ResFail: Error Response
  */
 export type PostMeek<
   Endpoint extends string,
@@ -143,6 +168,11 @@ export type PostMeek<
  * server, while the POST method creates or adds a resource on the server.
  * Unlike GET and HEAD requests, the HTTP PUT request may change the server
  * state.
+ *
+ * @generic Endpoint
+ * @generic ReqParams: Request params
+ * @generic ReqBody: Request body
+ * @generic ResSuccessBody: Body of the success response
  */
 export type Put<
   Endpoint extends string,
@@ -164,6 +194,12 @@ export type Put<
  * server, while the POST method creates or adds a resource on the server.
  * Unlike GET and HEAD requests, the HTTP PUT request may change the server
  * state.
+ *
+ * @generic Endpoint
+ * @generic ReqParams: Request params
+ * @generic ReqBody: Request body
+ * @generic ResSuccess: Success Response
+ * @generic ResFail: Error Response
  */
 export type PutMeek<
   Endpoint extends string,
@@ -186,6 +222,11 @@ export type PutMeek<
  * to a resource, while the PUT method performs a complete replacement
  * of the resource. Unlike GET and HEAD requests, the PATCH requests may
  * change the server state.
+ *
+ * @generic Endpoint
+ * @generic ReqParams: Request params
+ * @generic ReqBody: Request body
+ * @generic ResSuccessBody: Body of the success response
  */
 export type Patch<
   Endpoint extends string,
@@ -208,6 +249,12 @@ export type Patch<
  * to a resource, while the PUT method performs a complete replacement
  * of the resource. Unlike GET and HEAD requests, the PATCH requests may
  * change the server state.
+ *
+ * @generic Endpoint
+ * @generic ReqParams: Request params
+ * @generic ReqBody: Request body
+ * @generic ResSuccess: Success Response
+ * @generic ResFail: Error Response
  */
 export type PatchMeek<
   Endpoint extends string,
@@ -234,6 +281,10 @@ export type PatchMeek<
  * define a body for your DELETE requests. You still can send data to the
  * server using URL parameters. This is usually an ID of the resource you
  * want to delete.
+ *
+ * @generic Endpoint
+ * @generic ReqParams: Request params
+ * @generic ResSuccessBody: Body of the success response
  */
 export type Delete<
   Endpoint extends string,
@@ -258,6 +309,11 @@ export type Delete<
  * define a body for your DELETE requests. You still can send data to the
  * server using URL parameters. This is usually an ID of the resource you
  * want to delete.
+ *
+ * @generic Endpoint
+ * @generic ReqParams: Request params
+ * @generic ResSuccess: Success Response
+ * @generic ResFail: Error Response
  */
 export type DeleteMeek<
   Endpoint extends string,
