@@ -1,5 +1,5 @@
 import {
-  ResStatesOpinionated,
+  // ResStatesOpinionated,
   ResSuccessExtends,
   ResFailExtends,
   ResSuccessOpinionated,
@@ -52,10 +52,9 @@ export type GetMeek<
   ResFail extends ResFailExtends
 > = {
   Endpoint: Endpoint;
-  _get: {
-    _req: ReqStatesParams<ReqParams>;
-    _res: ResStatesMeek<ResSuccess, ResFail>;
-  };
+  Type: 'get';
+  _req: ReqStatesParams<ReqParams>;
+  _res: ResStatesMeek<ResSuccess, ResFail>;
 };
 
 /**
@@ -85,9 +84,8 @@ export type Head<Endpoint, ReqParams extends ReqParamsExtends> = HeadMeek<
  */
 export type HeadMeek<Endpoint, ReqParams extends ReqParamsExtends> = {
   Endpoint: Endpoint;
-  _head: {
-    _req: ReqStatesParams<ReqParams>;
-  };
+  Type: 'head';
+  _req: ReqStatesParams<ReqParams>;
 };
 
 /**
@@ -133,10 +131,9 @@ export type PostMeek<
   ResFail extends ResFailExtends
 > = {
   Endpoint: Endpoint;
-  _post: {
-    _req: ReqStatesParamsBody<ReqParams, ReqBody>;
-    _res: ResStatesMeek<ResSuccess, ResFail>;
-  };
+  Type: 'post';
+  _req: ReqStatesParamsBody<ReqParams, ReqBody>;
+  _res: ResStatesMeek<ResSuccess, ResFail>;
 };
 
 /**
@@ -176,10 +173,9 @@ export type PutMeek<
   ResFail extends ResFailExtends
 > = {
   Endpoint: Endpoint;
-  _put: {
-    _req: ReqStatesParamsBody<ReqParams, ReqBody>;
-    _res: ResStatesMeek<ResSuccess, ResFail>;
-  };
+  Type: 'put';
+  _req: ReqStatesParamsBody<ReqParams, ReqBody>;
+  _res: ResStatesMeek<ResSuccess, ResFail>;
 };
 
 /**
@@ -221,10 +217,9 @@ export type PatchMeek<
   ResFail extends ResFailExtends
 > = {
   Endpoint: Endpoint;
-  _patch: {
-    _req: ReqStatesParamsBody<ReqParams, ReqBody>;
-    _res: ResStatesMeek<ResSuccess, ResFail>;
-  };
+  Type: 'patch';
+  _req: ReqStatesParamsBody<ReqParams, ReqBody>;
+  _res: ResStatesMeek<ResSuccess, ResFail>;
 };
 
 /**
@@ -271,8 +266,7 @@ export type DeleteMeek<
   ResFail extends ResFailExtends
 > = {
   Endpoint: Endpoint;
-  _delete: {
-    _req: ReqStatesParams<ReqParams>;
-    _res: ResStatesMeek<ResSuccess, ResFail>;
-  };
+  Type: 'delete';
+  _req: ReqStatesParams<ReqParams>;
+  _res: ResStatesMeek<ResSuccess, ResFail>;
 };

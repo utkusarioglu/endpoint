@@ -1,4 +1,7 @@
-import type { ParamAcceptedPrimitives } from './endpoint.types';
+import type {
+  RequiredValidateProps,
+  RequiredPrepareProps,
+} from './endpoint.types';
 
 /**
  * An identity function that allows the validation of endpoint strings through
@@ -13,8 +16,10 @@ import type { ParamAcceptedPrimitives } from './endpoint.types';
  *  the param
  * @param endpoint endpoint string to validate
  */
-export const validateEndpoint: <Endpoint extends string>(
-  endpoint: Endpoint
+export const validateEndpoint: <
+  EndpointHierarchy extends RequiredValidateProps
+>(
+  endpoint: EndpointHierarchy['Endpoint']
 ) => string = (endpoint) => endpoint;
 
 /**
@@ -29,10 +34,10 @@ export const validateEndpoint: <Endpoint extends string>(
  * @param endpoint endpoint to format skeleton to which the connection will be made
  * @param params params that shall be placed into the skeleton
  */
-export function prepareEndpoint<
-  Endpoint extends string,
-  Params extends Record<keyof Params, ParamAcceptedPrimitives>
->(endpoint: Endpoint, params?: Params): string {
+export function prepareEndpoint<EndpointHierarchy extends RequiredPrepareProps>(
+  endpoint: EndpointHierarchy['Endpoint'],
+  params?: EndpointHierarchy['_req']['Params']
+): string {
   let preparedEndpoint: string = endpoint;
 
   // Check of params.constructor === "object" is omitted
