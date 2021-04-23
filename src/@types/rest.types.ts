@@ -1,4 +1,10 @@
 import { ResStates } from './response.types';
+import type {
+  ReqStatesParams,
+  ReqParamsExtends,
+  ReqStatesParamsBody,
+  ReqBodyExtends,
+} from './request.types';
 
 /*
  * Some of the definitions below are taken from:
@@ -13,9 +19,15 @@ import { ResStates } from './response.types';
  * not change its state). If you want to change data on the server,
  * use POST, PUT, PATCH or DELETE methods.
  */
-export type Get<Endpoint, ReqParams, ResSuccessType> = {
+export type Get<
+  Endpoint,
+  ReqParams extends ReqParamsExtends,
+  ResSuccessBody
+> = {
   Endpoint: Endpoint;
   _get: {
+    _req: ReqStatesParams<ReqParams>;
+    _res: ResStates<ResSuccessBody>;
     _req: {
       Params: ReqParams;
     };
@@ -33,12 +45,10 @@ export type Get<Endpoint, ReqParams, ResSuccessType> = {
  * change its state). If you want to change data on the server, use POST,
  * PUT, PATCH or DELETE methods.
  */
-export type Head<Endpoint, ReqParams> = {
+export type Head<Endpoint, ReqParams extends ReqParamsExtends> = {
   Endpoint: Endpoint;
   _head: {
-    _req: {
-      Params: ReqParams;
-    };
+    _req: ReqStatesParams<ReqParams>;
   };
 };
 
@@ -53,13 +63,15 @@ export type Head<Endpoint, ReqParams> = {
  * requests. Unlike GET and HEAD requests, the HTTP POST requests may
  * change the server state.
  */
-export type Post<Endpoint, ReqParams, ReqBody, ResSuccessType> = {
+export type Post<
+  Endpoint,
+  ReqParams extends ReqParamsExtends,
+  ReqBody extends ReqBodyExtends,
+  ResSuccessType
+> = {
   Endpoint: Endpoint;
   _post: {
-    _req: {
-      Params: ReqParams;
-      Body: ReqBody;
-    };
+    _req: ReqStatesParamsBody<ReqParams, ReqBody>;
     _res: ResStates<ResSuccessType>;
   };
 };
@@ -72,13 +84,15 @@ export type Post<Endpoint, ReqParams, ReqBody, ResSuccessType> = {
  * Unlike GET and HEAD requests, the HTTP PUT request may change the server
  * state.
  */
-export type Put<Endpoint, ReqParams, ReqBody, ResSuccessType> = {
+export type Put<
+  Endpoint,
+  ReqParams extends ReqParamsExtends,
+  ReqBody extends ReqBodyExtends,
+  ResSuccessType
+> = {
   Endpoint: Endpoint;
   _put: {
-    _req: {
-      Params: ReqParams;
-      Body: ReqBody;
-    };
+    _req: ReqStatesParamsBody<ReqParams, ReqBody>;
     _res: ResStates<ResSuccessType>;
   };
 };
@@ -92,13 +106,15 @@ export type Put<Endpoint, ReqParams, ReqBody, ResSuccessType> = {
  * of the resource. Unlike GET and HEAD requests, the PATCH requests may
  * change the server state.
  */
-export type Patch<Endpoint, ReqParams, ReqBody, ResSuccessType> = {
+export type Patch<
+  Endpoint,
+  ReqParams extends ReqParamsExtends,
+  ReqBody extends ReqBodyExtends,
+  ResSuccessType
+> = {
   Endpoint: Endpoint;
   _patch: {
-    _req: {
-      Params: ReqParams;
-      Body: ReqBody;
-    };
+    _req: ReqStatesParamsBody<ReqParams, ReqBody>;
     _res: ResStates<ResSuccessType>;
   };
 };
@@ -116,12 +132,14 @@ export type Patch<Endpoint, ReqParams, ReqBody, ResSuccessType> = {
  * server using URL parameters. This is usually an ID of the resource you
  * want to delete.
  */
-export type Delete<Endpoint, ReqParams, ResSuccessType> = {
+export type Delete<
+  Endpoint,
+  ReqParams extends ReqParamsExtends,
+  ResSuccessType
+> = {
   Endpoint: Endpoint;
   _delete: {
-    _req: {
-      Params: ReqParams;
-    };
+    _req: ReqStatesParams<ReqParams>;
     _res: ResStates<ResSuccessType>;
   };
 };
