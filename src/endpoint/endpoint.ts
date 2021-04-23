@@ -1,6 +1,7 @@
 import type {
   RequiredValidateProps,
   RequiredPrepareProps,
+  IsFailInput,
 } from './endpoint.types';
 
 /**
@@ -52,4 +53,15 @@ export function prepareEndpoint<EndpointHierarchy extends RequiredPrepareProps>(
   }
 
   return preparedEndpoint;
+}
+
+/**
+ * Returns a boolean based of whether the request has failed.
+ * Returns true on fail.
+ *
+ * @param data Data object returned from fetch, axios or alike
+ * @returns boolean, true if the request state is 'fail'
+ */
+export function isFail(data: IsFailInput): boolean {
+  return data.state === 'fail';
 }

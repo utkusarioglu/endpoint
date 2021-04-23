@@ -1,3 +1,5 @@
+import type { WithSuccessState, WithFailState } from '../@types/mixin.types';
+
 /**
  * Primitives that are accepted as props for Params object
  */
@@ -20,3 +22,8 @@ export type RequiredPrepareProps = {
 export type RequiredValidateProps = {
   Endpoint: string;
 };
+
+/**
+ * Input type for isFail function
+ */
+export type IsFailInput = WithSuccessState | WithFailState;
