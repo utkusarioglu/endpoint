@@ -19,7 +19,7 @@ import type {
  */
 
 /**
- * Rest GET endpoint types hierarchy
+ * Opinionated Rest GET endpoint types hierarchy
  *
  * The HTTP GET request method is used to request a resource from the
  * server. The GET request should only receive data (the server must
@@ -39,6 +39,11 @@ export type Get<
 
 /**
  * Unopinionated Get endpoint type hierarchy
+ *
+ * The HTTP GET request method is used to request a resource from the
+ * server. The GET request should only receive data (the server must
+ * not change its state). If you want to change data on the server,
+ * use POST, PUT, PATCH or DELETE methods.
  */
 export type GetMeek<
   Endpoint,
@@ -54,7 +59,7 @@ export type GetMeek<
 };
 
 /**
- * Rest HEAD endpoint types hierarchy
+ * Opinionated Rest HEAD endpoint types hierarchy
  *
  * The HTTP HEAD method is used to request HTTP headers from the server.
  * The HTTP HEAD request is identical to the GET request except that
@@ -71,7 +76,7 @@ export type Head<Endpoint, ReqParams extends ReqParamsExtends> = {
 };
 
 /**
- * Rest POST endpoint types hierarchy
+ * Opinionated Rest POST endpoint types hierarchy
  *
  * The HTTP POST method is used to create or add a resource on the server.
  * Typically, the POST request adds a new resource to the server, while the
@@ -95,7 +100,7 @@ export type Post<
 };
 
 /**
- * Rest PUT endpoint types hierarchy
+ * Opinionated Rest PUT endpoint types hierarchy
  *
  * The HTTP PUT method is used to update an existing resource on the
  * server, while the POST method creates or adds a resource on the server.
@@ -116,7 +121,7 @@ export type Put<
 };
 
 /**
- * Rest PATCH endpoint types hierarchy
+ * Opinionated Rest PATCH endpoint types hierarchy
  *
  * The HTTP PATCH method is used to make partial changes to an existing
  * resource. Typically, the PATCH method applies partial modifications
@@ -138,7 +143,7 @@ export type Patch<
 };
 
 /**
- * Rest DELETE endpoint types hierarchy
+ * Opinionated Rest DELETE endpoint types hierarchy
  *
  * The HTTP DELETE method is used to delete a resource from the server.
  * Unlike GET and HEAD requests, the DELETE requests may change the server
