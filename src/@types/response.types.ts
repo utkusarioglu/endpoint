@@ -1,9 +1,9 @@
-import type { WithId, WithErrors } from './mixin.types';
+import type { WithRequestId, WithErrors } from './mixin.types';
 
 /**
  * Mixin for response success state
  */
-export type ResSuccessOpinionated<ResSuccessBody> = WithId & {
+export type ResSuccessOpinionated<ResSuccessBody> = WithRequestId & {
   state: 'success';
   body: ResSuccessBody;
 };
@@ -11,7 +11,7 @@ export type ResSuccessOpinionated<ResSuccessBody> = WithId & {
 /**
  * Response fail state
  */
-export type ResFailOpinionated = WithId &
+export type ResFailOpinionated = WithRequestId &
   WithErrors & {
     state: 'fail';
   };
