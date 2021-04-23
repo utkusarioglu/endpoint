@@ -27,7 +27,7 @@ import type {
  * use POST, PUT, PATCH or DELETE methods.
  */
 export type Get<
-  Endpoint,
+  Endpoint extends string,
   ReqParams extends ReqParamsExtends,
   ResSuccessBody
 > = GetMeek<
@@ -46,7 +46,7 @@ export type Get<
  * use POST, PUT, PATCH or DELETE methods.
  */
 export type GetMeek<
-  Endpoint,
+  Endpoint extends string,
   ReqParams extends ReqParamsExtends,
   ResSuccess extends ResSuccessExtends,
   ResFail extends ResFailExtends
@@ -87,7 +87,7 @@ export type Head<Endpoint, ReqParams extends ReqParamsExtends> = {
  * change the server state.
  */
 export type Post<
-  Endpoint,
+  Endpoint extends string,
   ReqParams extends ReqParamsExtends,
   ReqBody extends ReqBodyExtends,
   ResSuccessType
@@ -108,7 +108,7 @@ export type Post<
  * state.
  */
 export type Put<
-  Endpoint,
+  Endpoint extends string,
   ReqParams extends ReqParamsExtends,
   ReqBody extends ReqBodyExtends,
   ResSuccessType
@@ -130,7 +130,7 @@ export type Put<
  * change the server state.
  */
 export type Patch<
-  Endpoint,
+  Endpoint extends string,
   ReqParams extends ReqParamsExtends,
   ReqBody extends ReqBodyExtends,
   ResSuccessType
@@ -156,7 +156,7 @@ export type Patch<
  * want to delete.
  */
 export type Delete<
-  Endpoint,
+  Endpoint extends string,
   ReqParams extends ReqParamsExtends,
   ResSuccessType
 > = {
