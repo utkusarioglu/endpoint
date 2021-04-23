@@ -28,8 +28,21 @@ export type ResStatesForBody<ResSuccessBody> = {
 /**
  * Types hierarchy for response states
  */
-export type ResStates<ResSuccessBody> = {
-  Success: ResponseSuccess<ResSuccessBody>;
+export type ResStatesMeek<
+  ResSuccess extends ResSuccessExtends,
+  ResFail extends ResFailExtends
+> = {
+  Success: ResSuccess;
   Fail: ResponseFail;
-  Union: ResponseSuccess<ResSuccessBody> | ResponseFail;
+  Union: ResSuccess | ResFail;
 };
+
+/**
+ * Extends type for the basic shape of the user defined ResSuccess type
+ */
+export type ResSuccessExtends = Record<string, any>;
+
+/**
+ * Extends type for the basic shape of the user defined ResFail type
+ */
+export type ResFailExtends = Record<string, any>;

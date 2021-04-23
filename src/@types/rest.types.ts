@@ -1,5 +1,10 @@
 import {
   ResStatesForBody,
+  ResSuccessExtends,
+  ResFailExtends,
+  ResSuccessOpinionated,
+  ResponseFail,
+  ResStatesMeek,
 } from './response.types';
 import type {
   ReqStatesParams,
@@ -25,15 +30,26 @@ export type Get<
   Endpoint,
   ReqParams extends ReqParamsExtends,
   ResSuccessBody
+> = GetMeek<
+  Endpoint,
+  ReqParams,
+  ResSuccessOpinionated<ResSuccessBody>,
+  ResponseFail
+>;
+
+/**
+ * Unopinionated Get endpoint type hierarchy
+ */
+export type GetMeek<
+  Endpoint,
+  ReqParams extends ReqParamsExtends,
+  ResSuccess extends ResSuccessExtends,
+  ResFail extends ResFailExtends
 > = {
   Endpoint: Endpoint;
   _get: {
     _req: ReqStatesParams<ReqParams>;
-    _res: ResStates<ResSuccessBody>;
-    _req: {
-      Params: ReqParams;
-    };
-    _res: ResStates<ResSuccessType>;
+    _res: ResStatesMeek<ResSuccess, ResFail>;
   };
 };
 
