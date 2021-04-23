@@ -11,7 +11,7 @@ export type ResSuccessOpinionated<ResSuccessBody> = WithId & {
 /**
  * Response fail state
  */
-export type ResponseFail = WithId &
+export type ResFailOpinionated = WithId &
   WithErrors & {
     state: 'fail';
   };
@@ -19,10 +19,10 @@ export type ResponseFail = WithId &
 /**
  * Response states for opinionated response
  */
-export type ResStatesForBody<ResSuccessBody> = {
+export type ResStatesOpinionated<ResSuccessBody> = {
   Success: ResSuccessOpinionated<ResSuccessBody>;
-  Fail: ResponseFail;
-  Union: ResSuccessOpinionated<ResSuccessBody> | ResponseFail;
+  Fail: ResFailOpinionated;
+  Union: ResSuccessOpinionated<ResSuccessBody> | ResFailOpinionated;
 };
 
 /**
@@ -33,7 +33,7 @@ export type ResStatesMeek<
   ResFail extends ResFailExtends
 > = {
   Success: ResSuccess;
-  Fail: ResponseFail;
+  Fail: ResFailOpinionated;
   Union: ResSuccess | ResFail;
 };
 

@@ -1,9 +1,9 @@
 import {
-  ResStatesForBody,
+  ResStatesOpinionated,
   ResSuccessExtends,
   ResFailExtends,
   ResSuccessOpinionated,
-  ResponseFail,
+  ResFailOpinionated,
   ResStatesMeek,
 } from './response.types';
 import type {
@@ -34,7 +34,7 @@ export type Get<
   Endpoint,
   ReqParams,
   ResSuccessOpinionated<ResSuccessBody>,
-  ResponseFail
+  ResFailOpinionated
 >;
 
 /**
@@ -95,7 +95,7 @@ export type Post<
   Endpoint: Endpoint;
   _post: {
     _req: ReqStatesParamsBody<ReqParams, ReqBody>;
-    _res: ResStatesForBody<ResSuccessType>;
+    _res: ResStatesOpinionated<ResSuccessType>;
   };
 };
 
@@ -116,7 +116,7 @@ export type Put<
   Endpoint: Endpoint;
   _put: {
     _req: ReqStatesParamsBody<ReqParams, ReqBody>;
-    _res: ResStatesForBody<ResSuccessType>;
+    _res: ResStatesOpinionated<ResSuccessType>;
   };
 };
 
@@ -138,7 +138,7 @@ export type Patch<
   Endpoint: Endpoint;
   _patch: {
     _req: ReqStatesParamsBody<ReqParams, ReqBody>;
-    _res: ResStatesForBody<ResSuccessType>;
+    _res: ResStatesOpinionated<ResSuccessType>;
   };
 };
 
@@ -163,6 +163,6 @@ export type Delete<
   Endpoint: Endpoint;
   _delete: {
     _req: ReqStatesParams<ReqParams>;
-    _res: ResStatesForBody<ResSuccessType>;
+    _res: ResStatesOpinionated<ResSuccessType>;
   };
 };
