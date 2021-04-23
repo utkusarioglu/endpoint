@@ -1,4 +1,6 @@
-import { ResStates } from './response.types';
+import {
+  ResStatesForBody,
+} from './response.types';
 import type {
   ReqStatesParams,
   ReqParamsExtends,
@@ -72,7 +74,7 @@ export type Post<
   Endpoint: Endpoint;
   _post: {
     _req: ReqStatesParamsBody<ReqParams, ReqBody>;
-    _res: ResStates<ResSuccessType>;
+    _res: ResStatesForBody<ResSuccessType>;
   };
 };
 
@@ -93,7 +95,7 @@ export type Put<
   Endpoint: Endpoint;
   _put: {
     _req: ReqStatesParamsBody<ReqParams, ReqBody>;
-    _res: ResStates<ResSuccessType>;
+    _res: ResStatesForBody<ResSuccessType>;
   };
 };
 
@@ -115,7 +117,7 @@ export type Patch<
   Endpoint: Endpoint;
   _patch: {
     _req: ReqStatesParamsBody<ReqParams, ReqBody>;
-    _res: ResStates<ResSuccessType>;
+    _res: ResStatesForBody<ResSuccessType>;
   };
 };
 
@@ -140,6 +142,6 @@ export type Delete<
   Endpoint: Endpoint;
   _delete: {
     _req: ReqStatesParams<ReqParams>;
-    _res: ResStates<ResSuccessType>;
+    _res: ResStatesForBody<ResSuccessType>;
   };
 };
