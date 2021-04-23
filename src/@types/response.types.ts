@@ -3,9 +3,9 @@ import type { WithId, WithErrors } from './mixin.types';
 /**
  * Mixin for response success state
  */
-export type ResponseSuccess<T> = WithId & {
+export type ResponseSuccess<ResSuccessBody> = WithId & {
   state: 'success';
-  body: T;
+  body: ResSuccessBody;
 };
 
 /**
@@ -19,8 +19,8 @@ export type ResponseFail = WithId &
 /**
  * Types hierarchy for response states
  */
-export type ResStates<ResSuccessType> = {
-  Union: ResponseSuccess<ResSuccessType> | ResponseFail;
-  Success: ResponseSuccess<ResSuccessType>;
+export type ResStates<ResSuccessBody> = {
+  Success: ResponseSuccess<ResSuccessBody>;
   Fail: ResponseFail;
+  Union: ResponseSuccess<ResSuccessBody> | ResponseFail;
 };
