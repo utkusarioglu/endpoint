@@ -25,3 +25,17 @@ export type WithErrors = {
  * id to avoid double sends
  */
 export type WithRequestId = { requestId: Uuid };
+
+/**
+ * Mixin for using the success state property
+ */
+export type WithSuccessState = {
+  state: 'success';
+};
+
+/**
+ * Mixin for using the fail state property
+ */
+export type WithFailState = {
+  state: 'fail';
+};
