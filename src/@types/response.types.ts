@@ -17,15 +17,6 @@ export type ResFailOpinionated = WithRequestId &
   };
 
 /**
- * Response states for opinionated response
- */
-export type ResStatesOpinionated<ResSuccessBody> = {
-  Success: ResSuccessOpinionated<ResSuccessBody>;
-  Fail: ResFailOpinionated;
-  Union: ResSuccessOpinionated<ResSuccessBody> | ResFailOpinionated;
-};
-
-/**
  * Types hierarchy for response states
  */
 export type ResStatesMeek<
