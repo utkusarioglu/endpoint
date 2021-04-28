@@ -4,42 +4,74 @@ import { Uuid, MimeType, IsoDate } from 'brands-and-flavors';
 
 describe('validateEndpoint', () => {
   it('uses GET', () => {
-    type Feature = Get<'some/end/:point', { point: number }, {}>;
+    type Feature = Get<
+      'some/end/:point',
+      { point: number },
+      { one: string; two: number; three: boolean },
+      {}
+    >;
     const endpoint = 'some/end/:point';
     const validated = validateEndpoint<Feature>(endpoint);
     expect(validated).toBe(endpoint);
   });
 
   it('uses HEAD', () => {
-    type Feature = Head<'some/end/:point', { point: number }>;
+    type Feature = Head<
+      'some/end/:point',
+      { point: number },
+      { one: string; two: number; three: boolean }
+    >;
     const endpoint = 'some/end/:point';
     const validated = validateEndpoint<Feature>(endpoint);
     expect(validated).toBe(endpoint);
   });
 
   it('uses POST', () => {
-    type Feature = Post<'some/end/:point', { point: number }, {}, {}>;
+    type Feature = Post<
+      'some/end/:point',
+      { point: number },
+      { one: string; two: number; three: boolean },
+      {},
+      {}
+    >;
     const endpoint = 'some/end/:point';
     const validated = validateEndpoint<Feature>(endpoint);
     expect(validated).toBe(endpoint);
   });
 
   it('uses PUT', () => {
-    type Feature = Put<'some/end/:point', { point: number }, {}, {}>;
+    type Feature = Put<
+      'some/end/:point',
+      { point: number },
+      { one: string; two: number; three: boolean },
+      {},
+      {}
+    >;
     const endpoint = 'some/end/:point';
     const validated = validateEndpoint<Feature>(endpoint);
     expect(validated).toBe(endpoint);
   });
 
   it('uses PATCH', () => {
-    type Feature = Patch<'some/end/:point', { point: number }, {}, {}>;
+    type Feature = Patch<
+      'some/end/:point',
+      { point: number },
+      { one: string; two: number; three: boolean },
+      {},
+      {}
+    >;
     const endpoint = 'some/end/:point';
     const validated = validateEndpoint<Feature>(endpoint);
     expect(validated).toBe(endpoint);
   });
 
   it('uses DELETE', () => {
-    type Feature = Delete<'some/end/:point', { point: number }, {}>;
+    type Feature = Delete<
+      'some/end/:point',
+      { point: number },
+      { one: string; two: number; three: boolean },
+      {}
+    >;
     const endpoint = 'some/end/:point';
     const validated = validateEndpoint<Feature>(endpoint);
     expect(validated).toBe(endpoint);
@@ -52,6 +84,7 @@ describe('prepareEndpoint', () => {
       type Feature = Get<
         '/some/:end/:point/:url',
         { point: number; end: string; url: boolean },
+        { one: string; two: number; three: boolean },
         {}
       >;
       const endpoint = '/some/:end/:point/:url';
@@ -60,8 +93,14 @@ describe('prepareEndpoint', () => {
         end: 'yes',
         url: true,
       };
-      const prepared = prepareEndpoint<Feature>(endpoint, params);
-      const expected = '/some/yes/2/true';
+      const query = {
+        one: 'multi word input',
+        two: 2,
+        three: false,
+      };
+      const prepared = prepareEndpoint<Feature>(endpoint, params, query);
+      const expected =
+        '/some/yes/2/true?one=multi%20word%20input&two=2&three=false';
       expect(expected).toStrictEqual(prepared);
     });
 
@@ -69,6 +108,7 @@ describe('prepareEndpoint', () => {
       type Feature = Get<
         '/some/:end/:point/:url',
         { point: Uuid; end: MimeType; url: IsoDate },
+        { one: Uuid; two: MimeType; three: IsoDate },
         {}
       >;
       const endpoint = '/some/:end/:point/:url';
@@ -77,8 +117,14 @@ describe('prepareEndpoint', () => {
         end: 'mime-type',
         url: 'IsoDate',
       };
-      const prepared = prepareEndpoint<Feature>(endpoint, params);
-      const expected = '/some/mime-type/Uuid/IsoDate';
+      const query = {
+        one: 'multi word input',
+        two: 'two',
+        three: 'false',
+      };
+      const prepared = prepareEndpoint<Feature>(endpoint, params, query);
+      const expected =
+        '/some/mime-type/Uuid/IsoDate?one=multi%20word%20input&two=two&three=false';
       expect(expected).toStrictEqual(prepared);
     });
   });
@@ -87,7 +133,8 @@ describe('prepareEndpoint', () => {
     it('with primitives', () => {
       type Feature = Head<
         '/some/:end/:point/:url',
-        { point: number; end: string; url: boolean }
+        { point: number; end: string; url: boolean },
+        { one: string; two: number; three: boolean }
       >;
       const endpoint = '/some/:end/:point/:url';
       const params = {
@@ -95,15 +142,22 @@ describe('prepareEndpoint', () => {
         end: 'yes',
         url: true,
       };
-      const prepared = prepareEndpoint<Feature>(endpoint, params);
-      const expected = '/some/yes/2/true';
+      const query = {
+        one: 'multi word input',
+        two: 2,
+        three: false,
+      };
+      const prepared = prepareEndpoint<Feature>(endpoint, params, query);
+      const expected =
+        '/some/yes/2/true?one=multi%20word%20input&two=2&three=false';
       expect(expected).toStrictEqual(prepared);
     });
 
     it('with flavors', () => {
       type Feature = Head<
         '/some/:end/:point/:url',
-        { point: Uuid; end: MimeType; url: IsoDate }
+        { point: Uuid; end: MimeType; url: IsoDate },
+        { one: Uuid; two: MimeType; three: IsoDate }
       >;
       const endpoint = '/some/:end/:point/:url';
       const params = {
@@ -111,8 +165,14 @@ describe('prepareEndpoint', () => {
         end: 'mime-type',
         url: 'IsoDate',
       };
-      const prepared = prepareEndpoint<Feature>(endpoint, params);
-      const expected = '/some/mime-type/Uuid/IsoDate';
+      const query = {
+        one: 'multi word input',
+        two: 'two',
+        three: 'false',
+      };
+      const prepared = prepareEndpoint<Feature>(endpoint, params, query);
+      const expected =
+        '/some/mime-type/Uuid/IsoDate?one=multi%20word%20input&two=two&three=false';
       expect(expected).toStrictEqual(prepared);
     });
   });
@@ -122,6 +182,7 @@ describe('prepareEndpoint', () => {
       type Feature = Post<
         '/some/:end/:point/:url',
         { point: number; end: string; url: boolean },
+        { one: string; two: number; three: boolean },
         {},
         {}
       >;
@@ -131,8 +192,14 @@ describe('prepareEndpoint', () => {
         end: 'no',
         url: false,
       };
-      const prepared = prepareEndpoint<Feature>(endpoint, params);
-      const expected = '/some/no/3/false';
+      const query = {
+        one: 'multi word input',
+        two: 2,
+        three: false,
+      };
+      const prepared = prepareEndpoint<Feature>(endpoint, params, query);
+      const expected =
+        '/some/no/3/false?one=multi%20word%20input&two=2&three=false';
       expect(expected).toStrictEqual(prepared);
     });
 
@@ -140,6 +207,7 @@ describe('prepareEndpoint', () => {
       type Feature = Post<
         '/some/:end/:point/:url',
         { point: Uuid; end: MimeType; url: IsoDate },
+        { one: Uuid; two: MimeType; three: IsoDate },
         {},
         {}
       >;
@@ -149,8 +217,14 @@ describe('prepareEndpoint', () => {
         end: 'mime-type',
         url: 'IsoDate',
       };
-      const prepared = prepareEndpoint<Feature>(endpoint, params);
-      const expected = '/some/mime-type/Uuid/IsoDate';
+      const query = {
+        one: 'multi word input',
+        two: 'two',
+        three: 'false',
+      };
+      const prepared = prepareEndpoint<Feature>(endpoint, params, query);
+      const expected =
+        '/some/mime-type/Uuid/IsoDate?one=multi%20word%20input&two=two&three=false';
       expect(expected).toStrictEqual(prepared);
     });
   });
@@ -160,6 +234,7 @@ describe('prepareEndpoint', () => {
       type Feature = Put<
         '/some/:end/:point/:url',
         { point: number; end: string; url: boolean },
+        { one: string; two: number; three: boolean },
         {},
         {}
       >;
@@ -169,8 +244,14 @@ describe('prepareEndpoint', () => {
         end: 'no',
         url: false,
       };
-      const prepared = prepareEndpoint<Feature>(endpoint, params);
-      const expected = '/some/no/3/false';
+      const query = {
+        one: 'multi word input',
+        two: 2,
+        three: false,
+      };
+      const prepared = prepareEndpoint<Feature>(endpoint, params, query);
+      const expected =
+        '/some/no/3/false?one=multi%20word%20input&two=2&three=false';
       expect(expected).toStrictEqual(prepared);
     });
 
@@ -178,6 +259,7 @@ describe('prepareEndpoint', () => {
       type Feature = Put<
         '/some/:end/:point/:url',
         { point: Uuid; end: MimeType; url: IsoDate },
+        { one: Uuid; two: MimeType; three: IsoDate },
         {},
         {}
       >;
@@ -187,8 +269,14 @@ describe('prepareEndpoint', () => {
         end: 'mime-type',
         url: 'IsoDate',
       };
-      const prepared = prepareEndpoint<Feature>(endpoint, params);
-      const expected = '/some/mime-type/Uuid/IsoDate';
+      const query = {
+        one: 'multi word input',
+        two: 'two',
+        three: 'false',
+      };
+      const prepared = prepareEndpoint<Feature>(endpoint, params, query);
+      const expected =
+        '/some/mime-type/Uuid/IsoDate?one=multi%20word%20input&two=two&three=false';
       expect(expected).toStrictEqual(prepared);
     });
   });
@@ -198,6 +286,7 @@ describe('prepareEndpoint', () => {
       type Feature = Patch<
         '/some/:end/:point/:url',
         { point: number; end: string; url: boolean },
+        { one: string; two: number; three: boolean },
         {},
         {}
       >;
@@ -207,8 +296,14 @@ describe('prepareEndpoint', () => {
         end: 'no',
         url: false,
       };
-      const prepared = prepareEndpoint<Feature>(endpoint, params);
-      const expected = '/some/no/3/false';
+      const query = {
+        one: 'multi word input',
+        two: 2,
+        three: false,
+      };
+      const prepared = prepareEndpoint<Feature>(endpoint, params, query);
+      const expected =
+        '/some/no/3/false?one=multi%20word%20input&two=2&three=false';
       expect(expected).toStrictEqual(prepared);
     });
 
@@ -216,6 +311,7 @@ describe('prepareEndpoint', () => {
       type Feature = Patch<
         '/some/:end/:point/:url',
         { point: Uuid; end: MimeType; url: IsoDate },
+        { one: Uuid; two: MimeType; three: IsoDate },
         {},
         {}
       >;
@@ -225,8 +321,14 @@ describe('prepareEndpoint', () => {
         end: 'mime-type',
         url: 'IsoDate',
       };
-      const prepared = prepareEndpoint<Feature>(endpoint, params);
-      const expected = '/some/mime-type/Uuid/IsoDate';
+      const query = {
+        one: 'multi word input',
+        two: 'two',
+        three: 'false',
+      };
+      const prepared = prepareEndpoint<Feature>(endpoint, params, query);
+      const expected =
+        '/some/mime-type/Uuid/IsoDate?one=multi%20word%20input&two=two&three=false';
       expect(expected).toStrictEqual(prepared);
     });
   });
@@ -236,6 +338,7 @@ describe('prepareEndpoint', () => {
       type Feature = Delete<
         '/some/:end/:point/:url',
         { point: number; end: string; url: boolean },
+        { one: string; two: number; three: boolean },
         {}
       >;
       const endpoint = '/some/:end/:point/:url';
@@ -244,8 +347,14 @@ describe('prepareEndpoint', () => {
         end: 'yes',
         url: true,
       };
-      const prepared = prepareEndpoint<Feature>(endpoint, params);
-      const expected = '/some/yes/2/true';
+      const query = {
+        one: 'multi word input',
+        two: 2,
+        three: false,
+      };
+      const prepared = prepareEndpoint<Feature>(endpoint, params, query);
+      const expected =
+        '/some/yes/2/true?one=multi%20word%20input&two=2&three=false';
       expect(expected).toStrictEqual(prepared);
     });
 
@@ -253,6 +362,7 @@ describe('prepareEndpoint', () => {
       type Feature = Delete<
         '/some/:end/:point/:url',
         { point: Uuid; end: MimeType; url: IsoDate },
+        { one: string; two: number; three: boolean },
         {}
       >;
       const endpoint = '/some/:end/:point/:url';

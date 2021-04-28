@@ -34,10 +34,12 @@ export const validateEndpoint: <
  *
  * @param endpoint endpoint to format skeleton to which the connection will be made
  * @param params params that shall be placed into the skeleton
+ * @param query query object that shall be parsed into the skeleton
  */
 export function prepareEndpoint<EndpointHierarchy extends RequiredPrepareProps>(
   endpoint: EndpointHierarchy['Endpoint'],
-  params?: EndpointHierarchy['_req']['Params']
+  params?: EndpointHierarchy['_req']['Params'],
+  query?: EndpointHierarchy['_req']['Query']
 ): string {
   let preparedEndpoint: string = endpoint;
 
@@ -50,6 +52,18 @@ export function prepareEndpoint<EndpointHierarchy extends RequiredPrepareProps>(
         '' + param // faster than toString() while using with primitives
       );
     });
+  }
+
+  // Apply query pairs if there are any
+  if (query && Object.keys(query).length > 0) {
+    preparedEndpoint +=
+      '?' +
+      Object.entries(query)
+        .map(
+          ([key, value]) =>
+            encodeURIComponent(key) + '=' + encodeURIComponent(value)
+        )
+        .join('&');
   }
 
   return preparedEndpoint;

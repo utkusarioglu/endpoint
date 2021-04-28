@@ -13,6 +13,7 @@ export type RequiredPrepareProps = {
   Endpoint: string;
   _req: {
     Params: Record<string, ParamAcceptedPrimitives>;
+    Query: Record<string, ParamAcceptedPrimitives>;
   };
 };
 

@@ -6,9 +6,10 @@ import {
   ResStatesMeek,
 } from './response.types';
 import type {
-  ReqStatesParams,
+  ReqStatesParamsQuery,
   ReqParamsExtends,
-  ReqStatesParamsBody,
+  ReqQueryExtends,
+  ReqStatesParamsQueryBody,
   ReqBodyExtends,
 } from './request.types';
 
@@ -32,10 +33,12 @@ import type {
 export type Get<
   Endpoint extends string,
   ReqParams extends ReqParamsExtends,
+  ReqQuery extends ReqQueryExtends,
   ResSuccessBody
 > = GetMeek<
   Endpoint,
   ReqParams,
+  ReqQuery,
   ResSuccessOpinionated<ResSuccessBody>,
   ResFailOpinionated
 >;
@@ -56,12 +59,13 @@ export type Get<
 export type GetMeek<
   Endpoint extends string,
   ReqParams extends ReqParamsExtends,
+  ReqQuery extends ReqQueryExtends,
   ResSuccess extends ResSuccessExtends,
   ResFail extends ResFailExtends
 > = {
   Endpoint: Endpoint;
   Type: 'get';
-  _req: ReqStatesParams<ReqParams>;
+  _req: ReqStatesParamsQuery<ReqParams, ReqQuery>;
   _res: ResStatesMeek<ResSuccess, ResFail>;
 };
 
@@ -78,10 +82,11 @@ export type GetMeek<
  * @generic Endpoint
  * @generic ReqParams: Request params
  */
-export type Head<Endpoint, ReqParams extends ReqParamsExtends> = HeadMeek<
+export type Head<
   Endpoint,
-  ReqParams
->;
+  ReqParams extends ReqParamsExtends,
+  ReqQuery extends ReqQueryExtends
+> = HeadMeek<Endpoint, ReqParams, ReqQuery>;
 
 /**
  * Unopinionated Rest HEAD endpoint types hierarchy
@@ -96,10 +101,14 @@ export type Head<Endpoint, ReqParams extends ReqParamsExtends> = HeadMeek<
  * @generic Endpoint
  * @generic ReqParams: Request params
  */
-export type HeadMeek<Endpoint, ReqParams extends ReqParamsExtends> = {
+export type HeadMeek<
+  Endpoint,
+  ReqParams extends ReqParamsExtends,
+  ReqQuery extends ReqQueryExtends
+> = {
   Endpoint: Endpoint;
   Type: 'head';
-  _req: ReqStatesParams<ReqParams>;
+  _req: ReqStatesParamsQuery<ReqParams, ReqQuery>;
 };
 
 /**
@@ -121,11 +130,13 @@ export type HeadMeek<Endpoint, ReqParams extends ReqParamsExtends> = {
 export type Post<
   Endpoint extends string,
   ReqParams extends ReqParamsExtends,
+  ReqQuery extends ReqQueryExtends,
   ReqBody extends ReqBodyExtends,
   ResSuccessBody
 > = PostMeek<
   Endpoint,
   ReqParams,
+  ReqQuery,
   ReqBody,
   ResSuccessOpinionated<ResSuccessBody>,
   ResFailOpinionated
@@ -151,13 +162,14 @@ export type Post<
 export type PostMeek<
   Endpoint extends string,
   ReqParams extends ReqParamsExtends,
+  ReqQuery extends ReqQueryExtends,
   ReqBody extends ReqBodyExtends,
   ResSuccess extends ResSuccessExtends,
   ResFail extends ResFailExtends
 > = {
   Endpoint: Endpoint;
   Type: 'post';
-  _req: ReqStatesParamsBody<ReqParams, ReqBody>;
+  _req: ReqStatesParamsQueryBody<ReqParams, ReqQuery, ReqBody>;
   _res: ResStatesMeek<ResSuccess, ResFail>;
 };
 
@@ -177,11 +189,13 @@ export type PostMeek<
 export type Put<
   Endpoint extends string,
   ReqParams extends ReqParamsExtends,
+  ReqQuery extends ReqQueryExtends,
   ReqBody extends ReqBodyExtends,
   ResSuccessBody
 > = PutMeek<
   Endpoint,
   ReqParams,
+  ReqQuery,
   ReqBody,
   ResSuccessOpinionated<ResSuccessBody>,
   ResFailOpinionated
@@ -204,13 +218,14 @@ export type Put<
 export type PutMeek<
   Endpoint extends string,
   ReqParams extends ReqParamsExtends,
+  ReqQuery extends ReqQueryExtends,
   ReqBody extends ReqBodyExtends,
   ResSuccess extends ResSuccessExtends,
   ResFail extends ResFailExtends
 > = {
   Endpoint: Endpoint;
   Type: 'put';
-  _req: ReqStatesParamsBody<ReqParams, ReqBody>;
+  _req: ReqStatesParamsQueryBody<ReqParams, ReqQuery, ReqBody>;
   _res: ResStatesMeek<ResSuccess, ResFail>;
 };
 
@@ -231,11 +246,13 @@ export type PutMeek<
 export type Patch<
   Endpoint extends string,
   ReqParams extends ReqParamsExtends,
+  ReqQuery extends ReqQueryExtends,
   ReqBody extends ReqBodyExtends,
   ResSuccessBody
 > = PatchMeek<
   Endpoint,
   ReqParams,
+  ReqQuery,
   ReqBody,
   ResSuccessOpinionated<ResSuccessBody>,
   ResFailOpinionated
@@ -259,13 +276,14 @@ export type Patch<
 export type PatchMeek<
   Endpoint extends string,
   ReqParams extends ReqParamsExtends,
+  ReqQuery extends ReqQueryExtends,
   ReqBody extends ReqBodyExtends,
   ResSuccess extends ResSuccessExtends,
   ResFail extends ResFailExtends
 > = {
   Endpoint: Endpoint;
   Type: 'patch';
-  _req: ReqStatesParamsBody<ReqParams, ReqBody>;
+  _req: ReqStatesParamsQueryBody<ReqParams, ReqQuery, ReqBody>;
   _res: ResStatesMeek<ResSuccess, ResFail>;
 };
 
@@ -289,10 +307,12 @@ export type PatchMeek<
 export type Delete<
   Endpoint extends string,
   ReqParams extends ReqParamsExtends,
+  ReqQuery extends ReqQueryExtends,
   ResSuccessBody
 > = DeleteMeek<
   Endpoint,
   ReqParams,
+  ReqQuery,
   ResSuccessOpinionated<ResSuccessBody>,
   ResFailOpinionated
 >;
@@ -318,11 +338,12 @@ export type Delete<
 export type DeleteMeek<
   Endpoint extends string,
   ReqParams extends ReqParamsExtends,
+  ReqQuery extends ReqQueryExtends,
   ResSuccess extends ResSuccessExtends,
   ResFail extends ResFailExtends
 > = {
   Endpoint: Endpoint;
   Type: 'delete';
-  _req: ReqStatesParams<ReqParams>;
+  _req: ReqStatesParamsQuery<ReqParams, ReqQuery>;
   _res: ResStatesMeek<ResSuccess, ResFail>;
 };

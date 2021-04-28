@@ -25,7 +25,7 @@ type Success = {
 };
 ```
 
-`ResponseSuccessBody` is the 3rd generic provided to all opinionated types. In
+`ResponseSuccessBody` is the 4rd generic provided to all opinionated types. In
 the documentation, it's listed as the generic named `ResSuccessBody`.
 
 The `state` property is a string literal that assumes either `'success'` or
@@ -84,9 +84,16 @@ advised to return the `Union` type to the ui library of your choice.
 import { prepareEndpoint, isFail } from 'endpoint-tools';
 
 fetch(
-  prepareEndpoint<GetSinglePostV1>('/post/slug/v1/:postSlug', {
-    postSlug: 'how-to-fry-bananas',
-  })
+  prepareEndpoint<GetCategoryPostsV1>(
+    '/category/:categorySlug/posts/v1',
+    {
+      categorySlug: 'banana-for-scale',
+    },
+    {
+      start: 0,
+      count: 20,
+    }
+  )
 )
   .then((response) => response.json())
   .then((data) => {
@@ -96,7 +103,7 @@ fetch(
       // state management
     }
 
-    return data; // GetSinglePostV1['_res']['Union']
+    return data; // GetCategoryPostsV1['_res']['Union']
   });
 ```
 
